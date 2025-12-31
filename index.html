@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Happy New Year 2026</title>
+    
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700|Pacifico" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://public.codepenassets.com/css/normalize-5.0.0.min.css">
+    
+    <style>
+        /* --- GLOBAL RESET --- */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            overflow: hidden; 
+            width: 100vw;
+            height: 100vh;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* =========================================
+           SCENE 1: 2025 -> 2026 ANIMATION
+           ========================================= */
+        #scene-intro {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 100;
+            background: #000;
+            transition: opacity 1s ease;
+            opacity: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; 
+        }
+
+        /* --- INTRO ANIMATION CSS --- */
+        *, *:after, *:before{
+          box-sizing:border-box;
+          margin:0;
+          padding:0;
+          transition: all 100ms ease-in;
+        }
+        
+        .ano_novo{
+          position: relative; 
+          width: 1200px;      
+          height: 600px;      
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          padding: 200px 100px 0px 0px; 
+          overflow: visible; 
+        }
+
+        .ano_novo>span{
+          font-family: 'Montserrat', sans-serif;
+          font-size: 175px;
+          font-weight: 700;
+          color: #ffffff;
+        }
+        span.seis{
+          position: absolute;
+          top: 50%;
+          right: 50%;
+          margin-right: -200px;
+          -webkit-animation: vai_2016 5s ease-in-out 5s forwards;
+                  animation: vai_2016 5s ease-in-out 5s forwards;
+        }
+        span.sete{
+          position: absolute;
+          right: 0%;
+          margin-right: -200px;
+          -webkit-animation: vem_2017 6s ease-in-out forwards;
+                  animation: vem_2017 6s ease-in-out forwards;
+        }
+        span.sete:before{
+          content: '';
+          width: 0px;
+          height: 6px;
+          display: block;
+          border-radius: 3px;
+          background: #ffffff;
+          transform: rotate(0deg);
+          transform-origin: left top;
+          position: absolute;
+          top: 55px;
+          left: 15px;
+          z-index: -1;
+          -webkit-animation: entrega_balao 1s ease-in-out 4s;
+                  animation: entrega_balao 1s ease-in-out 4s;
+        }
+        .balao{
+          width: 100px;
+          height: 100px;
+          display: block;
+          background: rgb(255, 60, 60);
+          border-radius: 50%;
+          position: absolute;
+          top: 50%;
+          margin-top: -165px;
+          right: 0%;
+          margin-right: -200px;
+          -webkit-animation: vem_e_vai_balao 10s ease-in-out forwards;
+                  animation: vem_e_vai_balao 10s ease-in-out forwards;
+        }
+        .balao:before{
+          content: '';
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 0 10px 20px 10px;
+          border-color: transparent transparent #b19b32 transparent;
+          position: absolute;
+          left: 50%;
+          margin-left: -10px;
+          bottom: -10px;
+          z-index: -1;
+        }
+        .balao:after{
+          content: '';
+          width: 4px;
+          height: 100px;
+          display: block;
+          background: #ffffff;
+          border-radius: 0px 0px 3px 3px;
+          position: absolute;
+          left: 50%;
+          margin-left: -2px;
+          bottom: -110px;
+        }
+
+        /* KEYFRAMES INTRO */
+        @-webkit-keyframes vem_2017 {
+          0% { right: 0%; }
+          66.6666% { right: 50%; margin-right: -300px; }
+          90% { right: 50%; margin-right: -300px; }
+          100% { right: 50%; }
+        }
+        @keyframes vem_2017 {
+          0% { right: 0%; }
+          66.6666% { right: 50%; margin-right: -300px; }
+          90% { right: 50%; margin-right: -300px; }
+          100% { right: 50%; }
+        }
+        @-webkit-keyframes vem_e_vai_balao {
+          0% { right: 0%; }
+          40% { right: 50%; margin-right: -300px; }
+          50% { right: 50%; margin-right: -200px; top: 50%; }
+          100% { top: -100%; right: 50%; }
+        }
+        @keyframes vem_e_vai_balao {
+          0% { right: 0%; }
+          40% { right: 50%; margin-right: -300px; }
+          50% { right: 50%; margin-right: -200px; top: 50%; }
+          100% { top: -100%; right: 50%; }
+        }
+        @-webkit-keyframes entrega_balao {
+          0% { transform: rotate(-30deg); width: 40px; }
+          100% { transform: rotate(-150deg); width: 70px; }
+        }
+        @keyframes entrega_balao {
+          0% { transform: rotate(-30deg); width: 40px; }
+          100% { transform: rotate(-150deg); width: 70px; }
+        }
+        @-webkit-keyframes vai_2016 {
+          0% { top: 50%; }
+          100% { top: -100%; }
+        }
+        @keyframes vai_2016 {
+          0% { top: 50%; }
+          100% { top: -100%; }
+        }
+        .ano_novo > span:first-child { margin-right: 25px; }
+
+
+        /* =========================================
+           SCENE 2: FIREWORKS CSS
+           ========================================= */
+        #scene-main {
+            display: none; 
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 50;
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+            mix-blend-mode: screen; 
+        }
+
+        .stack-container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1vh;
+            transform: translateY(-5vh); 
+            transition: opacity 1s ease; 
+        }
+
+        .word-row { display: flex; gap: 10px; }
+
+        .letter {
+            font-family: 'Cinzel Decorative', cursive;
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 10vw; 
+            line-height: 1;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.4);
+            opacity: 0;
+            transform: scale(0.5);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+        }
+        .letter.revealed { opacity: 1; transform: scale(1); }
+
+
+        /* =========================================
+           SCENE 3: SIMPLE LINE (INTERMEDIATE)
+           ========================================= */
+        #scene-message-small {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none; /* Hidden initially */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 60;
+            opacity: 0;
+            transition: opacity 2s ease;
+        }
+
+        .simple-line {
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        
+        .simple-line-br {
+             margin-top: 15px;
+             width: 50px;
+             height: 2px;
+             background: #fff;
+        }
+
+
+        /* =========================================
+           SCENE 4: PORTRAIT LETTER CARD
+           ========================================= */
+        #scene-final-message {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 70;
+            display: none; /* Hidden initially */
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 2s ease;
+            background: rgba(0,0,0,0.85); 
+        }
+
+        .letter-card {
+            width: 85vw; /* Portrait width */
+            max-width: 400px;
+            height: auto;
+            min-height: 50vh;
+            max-height: 80vh;
+            
+            /* Pinkish Background */
+            background-color: #fff0f5; /* LavenderBlush */
+            
+            /* Golden Double Border (Wave effect simulation) */
+            border: 6px double #d4af37; 
+            border-radius: 10px;
+            
+            /* Inner padding and scroll */
+            padding: 30px 20px;
+            overflow-y: auto;
+            
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            position: relative;
+        }
+
+        /* Golden Text Styling */
+        .card-text {
+            font-family: 'Dancing Script', cursive; /* Handwritten feel */
+            color: #b8860b; /* Dark Golden Rod */
+            font-size: 1.5rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .card-title {
+            font-family: 'Cinzel Decorative', cursive;
+            color: #d4af37;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .small-btn {
+            padding: 10px 25px;
+            background: transparent;
+            border: 2px solid #d4af37;
+            color: #d4af37;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            border-radius: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s;
+            margin-top: auto; /* Push to bottom if flex container */
+        }
+
+        .small-btn:hover {
+            background: #d4af37;
+            color: #fff0f5;
+        }
+
+
+        /* =========================================
+           MOBILE OPTIMIZATION
+           ========================================= */
+        @media (max-width: 900px) {
+            
+            /* SCENE 1 */
+            .ano_novo {
+                transform: scale(0.4); 
+                transform-origin: center center;
+                margin-left: 10px; 
+            }
+
+            /* SCENE 2 */
+            .letter { font-size: 19vw; }
+            .stack-container { gap: 5px; }
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div id="scene-intro">
+        <div class="ano_novo">
+            <span>202</span>
+            <span class="seis">5</span>
+            <span class="sete">6</span>
+            <div class="balao"></div>
+        </div>
+    </div>
+
+    <div id="scene-main">
+        <canvas id="fireworkCanvas"></canvas>
+        <div class="stack-container" id="stackContainer"></div>
+    </div>
+
+    <div id="scene-message-small">
+        <div class="simple-line">Just a moment</div>
+        <div class="simple-line-br"></div>
+    </div>
+
+    <div id="scene-final-message">
+        <div class="letter-card">
+            <h2 class="card-title">Dear Thangachi</h2>
+            
+            <div class="card-text">
+                This year we met and so Special, thank you baccha meri pyari behen. 
+                <br>
+                I love you so much and sorry for rude behavior sometimes.
+                <br>
+                May your 2026 be filled with golden moments, laughter, and success. yuor anna always support you.
+                <br><br>
+                Happy New Year!
+            </div>
+            
+            <button class="small-btn" onclick="window.location.href='fire.html'">Enjoy this</button>
+        </div>
+    </div>
+
+    <script>
+        // ===========================================
+        // 1. TRANSITION CONTROLLER (Intro -> Main)
+        // ===========================================
+        setTimeout(() => {
+            const intro = document.getElementById('scene-intro');
+            const main = document.getElementById('scene-main');
+
+            intro.style.opacity = '0'; 
+
+            setTimeout(() => {
+                intro.style.display = 'none'; 
+                main.style.display = 'flex';  
+                startFireworks(); 
+            }, 1000);
+
+        }, 10000); 
+
+        // ===========================================
+        // 2. FIREWORKS LOGIC
+        // ===========================================
+        function startFireworks() {
+            const PHASES = ["HAPPY", "NEW", "YEAR"];
+            const canvas = document.getElementById('fireworkCanvas');
+            const ctx = canvas.getContext('2d');
+            const stackContainer = document.getElementById('stackContainer');
+            
+            let width, height;
+            let rockets = [];
+            let particles = [];
+
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            function initHTML() {
+                stackContainer.innerHTML = '';
+                PHASES.forEach((word, wordIndex) => {
+                    const row = document.createElement('div');
+                    row.className = 'word-row';
+                    const chars = word.split('');
+                    chars.forEach((char, charIndex) => {
+                        const span = document.createElement('span');
+                        span.textContent = char;
+                        span.className = 'letter';
+                        span.id = `w${wordIndex}-c${charIndex}`;
+                        row.appendChild(span);
+                    });
+                    stackContainer.appendChild(row);
+                });
+            }
+
+            // ... (Generic Math functions) ...
+            function random(min, max) { return Math.random() * (max - min) + min; }
+            function randomColor() {
+                const colors = ['#ff4444', '#ffbf00', '#ffff00', '#44ff44', '#44aaff', '#d244ff', '#ffffff'];
+                return colors[Math.floor(Math.random() * colors.length)];
+            }
+
+            class Rocket {
+                constructor(targetX, targetY, letterSpan) {
+                    this.x = targetX; 
+                    this.y = height + 50; 
+                    this.targetY = targetY;
+                    this.targetX = targetX;
+                    this.letterSpan = letterSpan;
+                    this.speed = random(12, 16); 
+                    this.exploded = false;
+                    this.trail = [];
+                }
+                update() {
+                    this.trail.push({x: this.x, y: this.y});
+                    if(this.trail.length > 5) this.trail.shift();
+                    this.y -= this.speed;
+                    if((this.y - this.targetY) < 100) this.speed *= 0.95;
+                    if (this.y <= this.targetY && !this.exploded) this.explode();
+                }
+                draw() {
+                    if(this.exploded) return;
+                    ctx.beginPath();
+                    if(this.trail.length) {
+                        ctx.moveTo(this.trail[0].x, this.trail[0].y);
+                        for(let p of this.trail) ctx.lineTo(p.x, p.y);
+                    }
+                    ctx.strokeStyle = 'rgba(255,255,255,0.5)';
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                    ctx.fillStyle = '#fff';
+                    ctx.fillRect(this.x-2, this.y, 4, 10);
+                }
+                explode() {
+                    this.exploded = true;
+                    if(this.letterSpan) this.letterSpan.classList.add('revealed');
+                    const particleCount = 400; 
+                    const color = randomColor();
+                    for(let i=0; i<particleCount; i++) particles.push(new Particle(this.targetX, this.targetY, color));
+                }
+            }
+
+            class Particle {
+                constructor(x, y, color) {
+                    this.x = x; this.y = y; this.color = color;
+                    const angle = random(0, Math.PI * 2);
+                    const speed = random(2, 15);
+                    this.vx = Math.cos(angle) * speed;
+                    this.vy = Math.sin(angle) * speed;
+                    this.gravity = 0.12; this.friction = 0.95;
+                    this.alpha = 1; this.decay = random(0.005, 0.015);
+                }
+                update() {
+                    this.vx *= this.friction; this.vy *= this.friction;
+                    this.vy += this.gravity;
+                    this.x += this.vx; this.y += this.vy;
+                    this.alpha -= this.decay;
+                }
+                draw() {
+                    ctx.save();
+                    ctx.globalAlpha = this.alpha;
+                    ctx.fillStyle = this.color;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, 2, 0, Math.PI*2);
+                    ctx.fill();
+                    ctx.restore();
+                }
+            }
+
+            function launchPhase(phaseIndex) {
+                if(phaseIndex >= PHASES.length) return;
+                const word = PHASES[phaseIndex];
+                const letters = word.split('');
+                const letterDelay = 150; 
+                letters.forEach((char, i) => {
+                    const span = document.getElementById(`w${phaseIndex}-c${i}`);
+                    const rect = span.getBoundingClientRect();
+                    const tx = rect.left + rect.width/2;
+                    const ty = rect.top + rect.height/2;
+                    setTimeout(() => rockets.push(new Rocket(tx, ty, span)), i * letterDelay); 
+                });
+                const flightTime = 500; 
+                setTimeout(() => launchPhase(phaseIndex + 1), (letters.length * letterDelay) + flightTime);
+            }
+
+            function animate() {
+                ctx.fillStyle = 'rgba(5, 5, 5, 0.2)'; 
+                ctx.fillRect(0, 0, width, height);
+                for (let i = rockets.length - 1; i >= 0; i--) {
+                    rockets[i].update(); rockets[i].draw();
+                    if(rockets[i].exploded) rockets.splice(i, 1);
+                }
+                for (let i = particles.length - 1; i >= 0; i--) {
+                    particles[i].update(); particles[i].draw();
+                    if(particles[i].alpha <= 0) particles.splice(i, 1);
+                }
+                requestAnimationFrame(animate);
+            }
+
+            initHTML();
+            animate();
+            launchPhase(0);
+
+            // =======================================
+            // 3. SEQUENCE LOGIC 
+            // =======================================
+            
+            // Step A: Wait 9 seconds for fireworks to finish
+            setTimeout(() => {
+                
+                // 1. Hide "HAPPY NEW YEAR" Text
+                stackContainer.style.opacity = '0';
+                
+                // 2. Show Small Simple Line (Scene 3)
+                const smallScene = document.getElementById('scene-message-small');
+                smallScene.style.display = 'flex';
+                // Trigger reflow
+                void smallScene.offsetWidth; 
+                smallScene.style.opacity = '1';
+
+                // Step B: Wait 3 seconds to read the simple line
+                setTimeout(() => {
+
+                    // 1. Hide Simple Line
+                    smallScene.style.opacity = '0';
+                    setTimeout(() => { smallScene.style.display = 'none'; }, 2000);
+
+                    // 2. Show Portrait Letter (Scene 4)
+                    const finalScene = document.getElementById('scene-final-message');
+                    finalScene.style.display = 'flex'; // Flex to center the card
+                    void finalScene.offsetWidth;
+                    finalScene.style.opacity = '1';
+
+                }, 3000); // Wait 3 seconds reading time
+
+            }, 7800); 
+        }
+    </script>
+</body>
+</html>
