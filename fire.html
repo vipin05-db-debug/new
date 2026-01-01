@@ -637,28 +637,48 @@
     seqSmallBarrage.lastCalled = Date.now();
 
 
-    // --- CUSTOM TIMELINE LOGIC ---
+    // --- CUSTOM TIMELINE LOGIC (REWRITTEN AS REQUESTED) ---
     let gameStartTime = null;
-    let finaleRoundsCompleted = 0;
-    let currentFinaleCount = 0;
-    const finaleMaxShots = 32; 
+    
+    // State variables for the cycle logic
+    let currentMode = 'NORMAL'; // 'NORMAL' or 'FINALE'
+    let normalDuration = 10000; // Initial duration (10 seconds)
+    let phaseEndTime = 0;       // Timestamp when the current normal phase ends
+    let isFirstLoop = true;     // To track the jump from 10s to 12s
+    
+    // Finale tracking
+    let finaleShotCount = 0;
+    let finaleRoundCount = 0;
+    const finaleMaxShots = 32;  // Shots per finale round
+    const finaleMaxRounds = 2;  // Rounds of finale per cycle
 
     function startSequence() {
-        const now = Date.now();
-        
-        // 1. Initial State: If game hasn't started (button not clicked), do nothing
+        // 1. Initial State: If game hasn't started, do nothing
         if (!gameStartTime) return 1000;
+        
+        const now = Date.now();
 
-        // 2. Timeline Logic
-        const elapsed = now - gameStartTime;
+        // Initialize the first phase timer if not set
+        if (phaseEndTime === 0) {
+            phaseEndTime = now + normalDuration;
+        }
 
-        // Phase 1: First 10 seconds - Simple/Random Fireworks
-        if (elapsed < 10000) {
-            // Ensure finale mode is OFF
+        // --- MODE: NORMAL ---
+        if (currentMode === 'NORMAL') {
+            // Ensure finale mode is visually OFF
             if (store.state.config.finale) {
                 store.setState({ config: Object.assign({}, store.state.config, { finale: false }) });
             }
-            // Standard random selections
+
+            // Check if it is time to switch to Finale
+            if (now >= phaseEndTime) {
+                currentMode = 'FINALE';
+                finaleShotCount = 0;
+                finaleRoundCount = 0;
+                return 100; // Start finale immediately
+            }
+
+            // Run Standard Random Selections
             const rand = Math.random();
             if (rand < 0.08 && Date.now() - seqSmallBarrage.lastCalled > seqSmallBarrage.cooldown) return seqSmallBarrage();
             if (rand < 0.1) return seqPyramid();
@@ -667,40 +687,48 @@
             else if (rand < 1) return seqTriple();
         }
 
-        // Phase 2: Finale Mode (2 Rounds)
-        if (finaleRoundsCompleted < 2) {
-             // Force Finale Mode ON visually/logically
-             if (!store.state.config.finale) {
+        // --- MODE: FINALE ---
+        if (currentMode === 'FINALE') {
+            // Ensure Finale Mode is ON
+            if (!store.state.config.finale) {
                 store.setState({ config: Object.assign({}, store.state.config, { finale: true }) });
-             }
+            }
 
-             // Run Finale Shots
-             seqRandomFastShell();
-             
-             if (currentFinaleCount < finaleMaxShots) {
-                currentFinaleCount++;
-                return 170; // Fast fire
-             } else {
-                // One finale round finished
-                currentFinaleCount = 0;
-                finaleRoundsCompleted++;
-                return 3000; // Pause between finales
-             }
-        }
+            // Check if we finished all finale rounds
+            if (finaleRoundCount >= finaleMaxRounds) {
+                // SWITCH BACK TO NORMAL
+                currentMode = 'NORMAL';
 
-        // Phase 3: Endless Normal Mode
-        // Turn Finale Mode OFF
-        if (store.state.config.finale) {
-            store.setState({ config: Object.assign({}, store.state.config, { finale: false }) });
+                // UPDATE TIMING LOGIC
+                if (isFirstLoop) {
+                    // Jump from 10s to 12s after first loop
+                    normalDuration = 12000;
+                    isFirstLoop = false;
+                } else {
+                    // Increase by 1 second (1000ms) for every loop after
+                    normalDuration += 1000;
+                }
+                
+                // Set the end time for the NEXT normal phase
+                phaseEndTime = Date.now() + normalDuration;
+                
+                return 2000; // Short pause before normal shells resume
+            }
+
+            // Fire Finale Shot
+            seqRandomFastShell();
+            finaleShotCount++;
+
+            // Logic for rounds within the finale
+            if (finaleShotCount >= finaleMaxShots) {
+                // End of one round
+                finaleShotCount = 0;
+                finaleRoundCount++;
+                return 2000; // 2 second pause between finale rounds
+            }
+            
+            return 170; // Fast fire rate for finale
         }
-        
-        // Endless random
-        const rand = Math.random();
-        if (rand < 0.08 && Date.now() - seqSmallBarrage.lastCalled > seqSmallBarrage.cooldown) return seqSmallBarrage();
-        if (rand < 0.1) return seqPyramid();
-        if (rand < 0.6 && !IS_HEADER) return seqRandomShell();
-        else if (rand < 0.8) return seqTwoRandom();
-        else if (rand < 1) return seqTriple();
     }
 
 
@@ -717,8 +745,14 @@
         // Update State
         store.setState({ paused: false, soundEnabled: true });
         
-        // Set Timer
+        // Set Timer & Reset Logic Variables
         gameStartTime = Date.now();
+        currentMode = 'NORMAL';
+        normalDuration = 10000; // Reset to 10 seconds
+        phaseEndTime = 0;
+        isFirstLoop = true;
+        finaleShotCount = 0;
+        finaleRoundCount = 0;
         
         // UI Animation
         startOverlay.style.opacity = '0';
